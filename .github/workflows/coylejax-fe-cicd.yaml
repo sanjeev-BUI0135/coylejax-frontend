@@ -1,0 +1,49 @@
+name: Deploy Coylejax-frontend Dist Folder to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Install & Build
+        run: |
+          npm install
+          npm run build:staging
+
+      - name: Upload dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dist
+          path: dist/
+          retention-days: 1
+
+  deploy:
+    needs: build
+    runs-on: [self-hosted, coylejax]
+
+    steps:
+      - name: Download dist
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-dist
+          path: dist/
+
+      - name: Deploy dist
+        run: |
+          echo "Cleaning old files..."
+          rm -rf /home/ubuntu/staging/coylejax-frontend/dist/*
+
+          echo "Copying new files..."
+          cp -r dist/* /home/ubuntu/staging/coylejax-frontend/dist/
+
+      - name: Restart nginx
+        run: |
+          sudo systemctl restart nginx     

@@ -1,0 +1,121 @@
+export const DEFAULT_PROJECT_VISIBLE_COLUMNS = [
+  "project_name",
+  "company_name",
+  "contact_name",
+  "project_number",
+  "project_type",
+  "createdAt",
+  "created_by",
+  "estimated_value",
+  "status",
+  "materials_status",
+  "action",
+];
+
+export const PROJECT_LIST_COLUMN_OPTIONS = [
+  { label: "Project Name", key: "project_name" },
+  { label: "Company Name", key: "company_name" },
+  { label: "Contact Name", key: "contact_name" },
+  { label: "Project Number", key: "project_number" },
+  { label: "Division Type", key: "project_type" },
+  { label: "Created Date", key: "createdAt" },
+  { label: "Created By", key: "created_by" },
+  { label: "Value", key: "estimated_value", hiddenForRoles: ["Crew View"] },
+  { label: "Status", key: "status" },
+  { label: "Actions", key: "action" },
+  { label: "Project Type", key: "project_creation_type" },
+  { label: "Materials", key: "materials_status" },
+  { label: "Priority", key: "priority" },
+  { label: "Site Address", key: "location" },
+  { label: "Description", key: "description" },
+  { label: "Scope of Work", key: "requirements" },
+  { label: "Notes", key: "special_instructions" },
+  { label: "File Attachments", key: "file_attachments" },
+];
+
+export const DEFAULT_MaterialOrder_VISIBLE_COLUMNS = [
+  "project_name",
+  "company_name",
+  "contact_name",
+  "estimate_ref",
+  "createdAt",
+  "order_cost",
+  "items_progress",
+  "status",
+  "actions",
+];
+
+export const MaterialOrder_LIST_COLUMN_OPTIONS = [
+  { label: "Project Name", key: "project_name" },
+  { label: "Company Name", key: "company_name" },
+  { label: "Contact Name", key: "contact_name" },
+  { label: "Estimate Ref", key: "estimate_ref" },
+  { label: "Created Date", key: "createdAt" },
+  { label: "Order Cost", key: "order_cost", hiddenForRoles: ["Crew View"] },
+  { label: "Items Progress", key: "items_progress" },
+  { label: "Status", key: "status" },
+  { label: "Actions", key: "actions" },
+];
+
+export const DEFAULT_ESTIMATE_VISIBLE_COLUMNS = [
+  "estimate_number",
+  "project_id",
+  "company_name",
+  "customer_name",
+  "type",
+  "created_date",
+  "total_amount",
+  "status",
+  "actions",
+];
+
+export const ESTIMATE_LIST_COLUMN_OPTIONS = [
+  { label: "Estimate No", key: "estimate_number" },
+  { label: "Project Name", key: "project_id" },
+  { label: "Company Name", key: "company_name" },
+  { label: "Contact Name", key: "customer_name" },
+  { label: "Division Type", key: "type" },
+  { label: "Amount", key: "total_amount", hiddenForRoles: ["Crew View"] },
+  { label: "Status", key: "status" },
+  { label: "Customer PO Number", key: "customer_po_number" },
+  { label: "Email Address", key: "email_address" },
+  { label: "Site Address", key: "site_address" },
+  { label: "Billing Address", key: "billing_address" },
+  { label: "Scope of Work", key: "scope_of_work" },
+  { label: "Attached Files", key: "file_attachments" },
+  { label: "Additional Markup", key: "additional_markup", hiddenForRoles: ["Crew View"] },
+  { label: "Notes", key: "notes" },
+  { label: "Created Date", key: "created_date" },
+  { label: "Actions", key: "actions" },
+];
+
+export const DEFAULT_INVOICE_VISIBLE_COLUMNS = [
+  "invoice_number",
+  "project_id",
+  "company_name",
+  "customer_name",
+  "status",
+  "total_amount",
+  "amount_paid",
+  "balance",
+  "due_date",
+  "customer_po_number",
+];
+
+export const INVOICE_LIST_COLUMN_OPTIONS = [
+  { label: "Invoice Number", key: "invoice_number" },
+  { label: "Project Name", key: "project_id" },
+  { label: "Company Name", key: "company_name" },
+  { label: "Contact Name", key: "customer_name" },
+  { label: "Status", key: "status" },
+  { label: "Total Amount", key: "total_amount", hiddenForRoles: ["Crew View"] },
+  { label: "Paid", key: "amount_paid", hiddenForRoles: ["Crew View"] },
+  { label: "Balance", key: "balance", hiddenForRoles: ["Crew View"] },
+  { label: "Due Date", key: "due_date" },
+  { label: "Customer PO Number", key: "customer_po_number" },
+  { label: "Billing Address", key: "billing_address" },
+  { label: "Scope of Work", key: "scope_of_work" },
+//   { label: "Attached Files", key: "file_attachments" },
+  { label: "Additional Markup", key: "additional_markup", hiddenForRoles: ["Crew View"] },
+  { label: "Notes", key: "notes" },
+];

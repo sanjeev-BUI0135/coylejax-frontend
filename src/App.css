@@ -1,0 +1,155 @@
+@media (max-width:768px) {
+
+  .rsp-table tr{
+    border:none;
+    border-radius:8px;
+    display:block;
+  }
+
+  .rsp-table td{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px;
+    border-bottom:1px solid #e5e7eb;
+    gap:10px;
+  }
+
+  .rsp-table td:before{
+    width:140px;
+    min-width:140px;
+    font-weight:600;
+    color:#6b7280;
+  }
+
+  .rsp-table td:last-child{
+    border-bottom:none;
+  }
+
+  .responsiveTable td.pivoted {
+    border: 1px solid #d1d5db !important;
+  }
+
+  .responsiveTable2 td.pivoted {
+    padding-left: calc(30% + 10px) !important
+  }
+  
+
+  .responsiveTable tbody tr{
+    border: none !important;
+    padding: 0px !important;
+  }
+   .rsp-table td.hidden,
+  .rsp-table th.hidden {
+    display: none !important;
+  }
+  .responsiveTable1 th:first-child,
+  .responsiveTable1 td:first-child {
+    display: none !important;
+  }
+}
+
+/* ================= PRINT ================= */
+@media print {
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  html, body {
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .print-area, .print-area * {
+    visibility: visible;
+  }
+
+  .print-area {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .print-multipage,
+  .print-multipage * {
+    overflow: visible !important;
+  }
+
+  /* Reset all parents of the print area to allow pagination */
+  @page {
+    margin: 0.5cm;
+  }
+
+  body, html, #root, .estimate-print-wrapper, .estimate-page-content, 
+  .overflow-y-auto, .h-\[calc\(100vh-120px\)\], .print-tab-content,
+  .lg\:col-span-8, .h-screen, #page-content, .flex-1 {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .hide-print {
+    display: none !important;
+  }
+
+  /* ================= HEADER FIX ================= */
+  .print-area .grid {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
+  /* ================= BILLED / FROM ================= */
+  .print-area .grid.md\:grid-cols-2 {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+  }
+
+  .print-area .grid.md\:grid-cols-2 > div {
+    width: 48% !important;
+  }
+
+  /* ================= TABLE FIX ================= */
+  .rsp-table {
+    display: table !important;
+    width: 100% !important;
+  }
+
+  .rsp-table tr {
+    display: table-row !important;
+  }
+
+  .rsp-table th,
+  .rsp-table td {
+    display: table-cell !important;
+  }
+
+  .rsp-table td:before {
+    display: none !important;
+  }
+
+  button,
+  aside,
+  [role="tablist"],
+  .flex.justify-end,
+  .bg-white.text-\[\#0c54aa\] {
+    display: none !important;
+  }
+
+  .shadow-lg {
+    box-shadow: none !important;
+  }
+
+   .print-area {
+    border: none !important;
+   }
+}

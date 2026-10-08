@@ -1,0 +1,817 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* SunEditor Custom UI Tweaks */
+.sun-editor {
+  border-radius: 0.375rem !important;
+  border: 1px solid #e2e8f0 !important;
+}
+.dark .sun-editor {
+  border-color: #334155 !important;
+  background-color: #1e293b !important;
+}
+.sun-editor .se-toolbar {
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0.375rem 0.375rem 0 0 !important;
+  outline: none !important;
+}
+
+/* Force all text in the editor and rendered HTML to normal size and color, overriding any pasted inline styles */
+.sun-editor-editable, 
+.sun-editor-editable *,
+[class*="prose"],
+[class*="prose"] * {
+  font-size: 16px !important;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif !important;
+  line-height: 1.5 !important;
+}
+
+.sun-editor-editable,
+[class*="prose"] {
+  color: #111827 !important;
+}
+
+.sun-editor-editable *:not(a, b, strong, h1, h2, h3, h4, h5, h6),
+[class*="prose"] *:not(a, b, strong, h1, h2, h3, h4, h5, h6) {
+  color: inherit !important;
+  font-weight: inherit !important;
+}
+
+/* Ensure dark mode sets the correct base color for prose */
+.dark [class*="prose"] {
+  color: #e5e7eb !important;
+}
+
+.sun-editor .se-btn-tray {
+  padding: 0px 2px !important;
+  margin: 0 !important;
+}
+.sun-editor .se-btn {
+  width: 20px !important;
+  height: 20px !important;
+  padding: 2px !important;
+  margin: 0 !important;
+}
+.sun-editor .se-btn svg {
+  width: 11px !important;
+  height: 11px !important;
+}
+.sun-editor .se-wrapper .se-wrapper-inner {
+  border-radius: 0 0 0.375rem 0.375rem !important;
+}
+.sun-editor .se-resizing-bar {
+  display: none !important; /* keela div nu show aagurathu hide */
+}
+.sun-editor .se-btn-module-border {
+  border: none !important;
+}
+
+
+/* :root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
+
+
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .model-container {
+    @apply rounded-xl border bg-card border-gray-200 dark:border-gray-700 dark:bg-gray-800 text-card-foreground shadow w-full max-w-2xl;
+  }
+
+  .model-header {
+    @apply space-y-1.5 p-3 flex flex-row items-center justify-between bg-blue-200 dark:bg-gray-900 rounded-t-xl;
+  }
+
+  .model-body {
+    @apply p-6 pt-0 max-h-[80vh] overflow-y-auto mt-4;
+  }
+
+  .model-footer {
+    @apply flex justify-end gap-3 p-4 border-t bg-gray50-temp dark:bg-gray-900 rounded-b-xl
+  }
+
+  .text-gray-400temp {
+    @apply text-gray-400 dark:text-gray-400
+  }
+
+  .text-gray-500temp {
+    @apply text-gray-500 dark:text-gray-400
+  }
+
+  .text-gray-600temp {
+    @apply text-gray-600 dark:text-gray-500
+  }
+
+  .text-gray-700temp {
+    @apply text-gray-700 dark:text-gray-400
+  }
+
+  .text-gray-800temp {
+    @apply text-gray-800 dark:text-gray-500 hover:dark:text-gray-800
+  }
+
+  .text-gray-900temp {
+    @apply text-gray-900 dark:text-gray-200
+  }
+
+  .bg-gray50-temp {
+    @apply bg-gray-50 dark:bg-gray-900
+  }
+
+  .table-listrow-divstyle {
+    @apply overflow-x-auto rounded-lg border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 shadow-sm
+  }
+}
+
+/* Custom CSS */
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --text: #111827;
+}
+
+:root[data-theme="dark"] {
+  --bg: #0f172a;
+  --text: #e5e7eb;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.login-page::before {
+  position: fixed;
+  top: 0;
+  content: "";
+  background-image: url("@/assets/images/bg.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+  z-index: -1;
+}
+
+.bg-theme {
+  background-color: #0d55aa;
+}
+
+.bg-theme-500 {
+  background-color: #0e54a7;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.slide-panel {
+  position: fixed;
+  left: 80px;
+  background: #0e54a7;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 45;
+  transform: translateX(-120%);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
+  white-space: nowrap;
+}
+
+.slide-panel.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.line-item-textarea {
+  height: 40px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  overflow-y: auto;
+}
+
+.dark .bg-theme {
+  background-color: #1f2937;
+}
+
+.dark .bg-theme-500 {
+  background-color: #000;
+}
+
+.dark input,
+.dark select,
+.dark textarea,
+.dark .select__control,
+.dark .css-13cymwt-control,
+.dark .css-t3ipsp-control {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #fff;
+}
+
+.dark .select__input-container,
+.dark .select__single-value,
+.dark .react-select__single-value {
+  color: #fff;
+}
+
+.dark .react-select__menu-list,
+.dark .select__menu {
+  background-color: #000;
+}
+
+.dark .react-select__option,
+.dark .select__option {
+  color: #fff;
+}
+
+.dark .react-select__option--is-focuse,
+.dark .react-select__option--is-focused,
+.dark .select__menu-list .select__option:hover,
+.dark .select__option--is-focused {
+  background-color: #5ea5ff;
+}
+
+.react-select__control {
+  min-height: 36px;
+}
+
+.dark .react-select__menu {
+  background-color: #1f2937;
+}
+
+.dark .react-select__multi-value__remove svg,
+.dark .select__multi-value svg {
+  fill: #000;
+}
+
+.react-datepicker__month-container {
+  z-index: 9999;
+}
+
+.react-datepicker-popper {
+  z-index: 99999 !important;
+}
+
+/* Fix SunEditor dropdowns going behind subsequent editors */
+.sun-editor {
+  position: relative;
+  z-index: 1; /* Base z-index */
+}
+
+/* When interacting with an editor, bring it to the very front so its dropdowns overlap siblings */
+.sun-editor:hover,
+.sun-editor:focus-within,
+.sun-editor.se-focus {
+  z-index: 99999 !important;
+}
+
+.sun-editor .se-list-layer {
+  z-index: 9999 !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #ececec;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* React Datepicker Dark Mode */
+.dark .react-datepicker {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #fff;
+}
+.dark .react-datepicker__header {
+  background-color: #374151;
+  border-bottom-color: #4b5563;
+}
+.dark .react-datepicker__current-month,
+.dark .react-datepicker-time__header,
+.dark .react-datepicker-year-header,
+.dark .react-datepicker__day-name {
+  color: #e5e7eb;
+}
+.dark .react-datepicker__day {
+  color: #e5e7eb;
+}
+.dark .react-datepicker__day:hover {
+  background-color: #4b5563;
+}
+.dark .react-datepicker__day--selected,
+.dark .react-datepicker__day--keyboard-selected {
+  background-color: #3b82f6;
+  color: #fff;
+}
+.dark .react-datepicker__day--disabled {
+  color: #6b7280;
+}
+.dark .react-datepicker__day--disabled:hover {
+  background-color: transparent;
+}
+.dark .react-datepicker__triangle::after,
+.dark .react-datepicker__triangle::before {
+  border-bottom-color: #1f2937 !important;
+}
+
+/* Rich Text Prose Overrides */
+.prose a {
+  text-decoration: underline !important;
+  color: #2563eb !important;
+  cursor: pointer;
+}
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+}
+.dark .prose a {
+  color: #60a5fa !important;
+}
+
+/* SunEditor Dark Mode Overrides */
+.dark .sun-editor {
+  border-color: #374151 !important;
+  background-color: #1f2937 !important;
+}
+
+.dark .sun-editor .se-toolbar {
+  background-color: #374151 !important;
+  outline: 1px solid #374151 !important;
+}
+
+.dark .sun-editor .se-btn-tray {
+  background-color: #374151 !important;
+}
+
+.dark .sun-editor .se-btn {
+  color: #e5e7eb !important;
+  background-color: #374151 !important;
+}
+
+.dark .sun-editor .se-btn svg {
+  fill: #e5e7eb !important;
+}
+
+.dark .sun-editor .se-btn:hover {
+  background-color: #4b5563 !important;
+}
+
+.dark .sun-editor .se-btn-module-border {
+  border-color: #4b5563 !important;
+}
+
+.dark .sun-editor .se-resizing-bar {
+  background-color: #374151 !important;
+  border-top-color: #4b5563 !important;
+}
+
+.dark .sun-editor .se-wrapper .se-wrapper-inner,
+.dark .sun-editor .se-wrapper .sun-editor-editable {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+.dark .sun-editor .se-list-layer {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark .sun-editor .se-list-inner .se-btn-list {
+  color: #e5e7eb !important;
+  background-color: #374151 !important;
+}
+
+.dark .sun-editor .se-list-inner .se-btn-list:hover {
+  background-color: #4b5563 !important;
+}
+
+.dark .sun-editor .se-dialog .se-dialog-inner .se-dialog-content {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+  border-color: #374151 !important;
+}
+
+.dark .sun-editor .se-dialog .se-dialog-inner .se-dialog-header {
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark .sun-editor .se-dialog .se-dialog-inner .se-dialog-body,
+.dark .sun-editor .se-dialog .se-dialog-inner .se-dialog-body label,
+.dark .sun-editor .se-dialog .se-dialog-inner .se-dialog-body span {
+  color: #e5e7eb !important;
+}
+
+.dark .sun-editor .se-dialog .se-dialog-inner .se-dialog-body input,
+.dark .sun-editor .se-dialog-tabs button {
+  background-color: #374151 !important;
+  color: #e5e7eb !important;
+  background-color: #1f2937;
+}
+
+.dark .react-select__multi-value__remove svg,
+.dark .select__multi-value svg {
+  fill: #000;
+}
+
+.react-datepicker__month-container {
+  z-index: 9999;
+}
+
+.react-datepicker-popper {
+  z-index: 99999 !important;
+}
+
+/* Fix SunEditor dropdowns going behind subsequent editors */
+.sun-editor {
+  position: relative;
+  z-index: 1; /* Base z-index */
+}
+
+/* When interacting with an editor, bring it to the very front so its dropdowns overlap siblings */
+.sun-editor:hover,
+.sun-editor:focus-within,
+.sun-editor.se-focus {
+  z-index: 99999 !important;
+}
+
+.sun-editor .se-list-layer {
+  z-index: 9999 !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #ececec;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* React Datepicker Dark Mode */
+.dark .react-datepicker {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #fff;
+}
+.dark .react-datepicker__header {
+  background-color: #374151;
+  border-bottom-color: #4b5563;
+}
+.dark .react-datepicker__current-month,
+.dark .react-datepicker-time__header,
+.dark .react-datepicker-year-header,
+.dark .react-datepicker__day-name {
+  color: #e5e7eb;
+}
+.dark .react-datepicker__day {
+  color: #e5e7eb;
+}
+.dark .react-datepicker__day:hover {
+  background-color: #4b5563;
+}
+.dark .react-datepicker__day--selected,
+.dark .react-datepicker__day--keyboard-selected {
+  background-color: #3b82f6;
+  color: #fff;
+}
+.dark .react-datepicker__day--disabled {
+  color: #6b7280;
+}
+.dark .react-datepicker__day--disabled:hover {
+  background-color: transparent;
+}
+.dark .react-datepicker__triangle::after,
+.dark .react-datepicker__triangle::before {
+  border-bottom-color: #1f2937 !important;
+}
+
+/* Rich Text Prose Overrides */
+.prose a {
+  text-decoration: underline !important;
+  color: #2563eb !important;
+  cursor: pointer;
+}
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+}
+.dark .prose a {
+  color: #60a5fa !important;
+}
+
+/* SunEditor Dark Mode Overrides */
+.dark .sun-editor {
+  border-color: #374151 !important;
+  background-color: #1f2937 !important;
+}
+
+.dark .sun-editor .se-toolbar {
+  background-color: #374151 !important;
+  outline: 1px solid #374151 !important;
+}
+
+.dark .sun-editor .se-btn-tray {
+  background-color: #374151 !important;
+}
+
+.dark .sun-editor .se-btn {
+  color: #e5e7eb !important;
+  background-color: #374151 !important;
+}
+
+.dark .sun-editor .se-btn svg {
+  fill: #e5e7eb !important;
+}
+
+.dark .sun-editor .se-btn:hover {
+  background-color: #4b5563 !important;
+}
+
+.dark .sun-editor .se-btn-module-border {
+  border-color: #4b5563 !important;
+}
+
+.dark .sun-editor .se-resizing-bar {
+  background-color: #374151 !important;
+  border-top-color: #4b5563 !important;
+}
+
+.dark .sun-editor .se-wrapper .se-wrapper-inner,
+.dark .sun-editor .se-wrapper .sun-editor-editable {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+.dark .sun-editor .se-list-layer {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark .sun-editor .se-list-inner .se-btn-list {
+  color: #e5e7eb !important;
+  background-color: #374151 !important;
+}
+
+.dark .sun-editor .se-list-inner .se-btn-list:hover {
+  background-color: #4b5563 !important;
+}
+
+.dark .sun-editor .se-dialog .se-dialog-inner .se-dialog-content {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+  border-color: #374151 !important;
+}
+
+.dark .sun-editor .se-dialog .se-dialog-inner .se-dialog-header {
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark .sun-editor .se-dialog .se-dialog-inner .se-dialog-body,
+.dark .sun-editor .se-dialog .se-dialog-inner .se-dialog-body label,
+.dark .sun-editor .se-dialog .se-dialog-inner .se-dialog-body span {
+  color: #e5e7eb !important;
+}
+
+.dark .sun-editor .se-dialog .se-dialog-inner .se-dialog-body input,
+.dark .sun-editor .se-dialog-tabs button {
+  background-color: #374151 !important;
+  color: #e5e7eb !important;
+  border-color: #4b5563 !important;
+}
+/* Override bold weight to 600 */
+b, strong, .sun-editor-editable b, .sun-editor-editable strong {
+  font-weight: 600 !important;
+}
+
+/* SunEditor Dialog Overrides */
+.sun-editor .se-dialog .se-dialog-inner .se-dialog-content {
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.sun-editor .se-dialog, .sun-editor .se-dialog * {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif !important;
+}
+
+.se-wrapper-inner .se-wrapper-wysiwyg .sun-editor-editable span{
+  color: black !important;
+}

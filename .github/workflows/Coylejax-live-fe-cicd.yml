@@ -1,0 +1,90 @@
+# name: Deploy coylejax-frontend to Production on EC2
+
+# on:
+#   push:
+#     branches:
+#       - release/production-live
+#   workflow_dispatch:
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout source
+#         uses: actions/checkout@v3
+
+#       - name: Install Node modules & Build
+#         run: |
+#           npm install
+#           npm run build:prod   # generates dist/
+
+#       - name: Configure SSH for EC2
+#         uses: webfactory/ssh-agent@v0.7.0
+#         with:
+#           ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+
+#       - name: Upload dist folder to EC2
+#         run: |
+#           rsync -avz --delete \
+#             -e "ssh -o StrictHostKeyChecking=no" \
+#             ./dist/ \
+#             ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/ubuntu/coylejax-frontend/dist/
+
+#       - name: Reload Nginx
+#         run: |
+#           ssh -o StrictHostKeyChecking=no \
+#           ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
+#           "sudo systemctl reload nginx"
+
+
+#staging
+name: Deploy Coylejax-frontend Dist Folder to EC2
+
+on:
+  push:
+    branches:
+      - release/production-live
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Install & Build
+        run: |
+          npm install
+          npm run build:prod
+
+      - name: Upload dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dist
+          path: dist/
+          retention-days: 1
+
+  deploy:
+    needs: build
+    runs-on: [self-hosted, coylejax]
+
+    steps:
+      - name: Download dist
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-dist
+          path: dist/
+
+      - name: Deploy dist
+        run: |
+          echo "Cleaning old files..."
+          rm -rf /home/ubuntu/coylejax-frontend/dist/*
+
+          echo "Copying new files..."
+          cp -r dist/* /home/ubuntu/coylejax-frontend/dist/
+
+      - name: Restart nginx
+        run: |
+          sudo systemctl restart nginx     
