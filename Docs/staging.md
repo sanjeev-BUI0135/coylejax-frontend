@@ -96,4 +96,4 @@ Reloading applies the new files without interrupting active connections, ensurin
  
 ---
 
-**Maintained by:** BrightUI DevOps Team
+**Maintained by:** BrightUI DevOps Teams
