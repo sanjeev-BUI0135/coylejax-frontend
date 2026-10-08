@@ -187,8 +187,6 @@ export default function BidSubmissionDialog({ project, onClose, onSubmit }) {
         },
         body: JSON.stringify({
           ...newUserData,
-          password: "123456",
-          role_type: 'Bid User',
           created_by: user.role_type === "admin" ? user.id || user._id : user.created_by
         })
       });
